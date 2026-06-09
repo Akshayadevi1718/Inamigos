@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | InAmigos Foundation</title>
+    <style>
+        :root {
+            /* Fresh Light Green Theme Palette - Synchronized perfectly */
+            --bg-deep: #f4f9f5;         
+            --surface: #ffffff;         
+            --surface-bright: #ebf4ed;  
+            --primary-glow: #009640;    
+            --accent-orange: #f05423;    
+            --text-main: #0f291b;       
+            --text-muted: #52665a;      
+            --border-light: #e1ede5;    
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Clean Unified Header Components */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 20px rgba(0, 150, 64, 0.03);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            text-decoration: none; 
+            display: flex; 
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-img {
+            height: 50px; 
+            width: auto; 
+            object-fit: contain; 
+            display: block;
+        }
+
+        .logo-text {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text span {
+            color: var(--primary-glow);
+        }
+
+        nav {
+            display: flex; 
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-glow);
+        }
+
+        /* Content Layout Sections */
+        .about-banner {
+            padding: 80px 20px 40px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, rgba(0, 150, 64, 0.05) 0%, rgba(255, 255, 255, 0) 100%);
+        }
+
+        .about-banner h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            margin: 0 0 15px 0;
+            color: var(--text-main);
+            letter-spacing: -1px;
+        }
+
+        .about-banner h1 span { color: var(--primary-glow); }
+
+        .about-banner p {
+            color: var(--text-muted);
+            font-size: 1.15rem;
+            max-width: 650px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        .dna-section {
+            max-width: 1100px;
+            margin: 30px auto 60px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 40px;
+            align-items: center;
+            box-sizing: border-box;
+        }
+
+        .dna-text h2 { font-size: 2rem; margin: 0 0 15px 0; color: var(--text-main); letter-spacing: -0.5px; }
+        .dna-text p { color: var(--text-muted); font-size: 1.05rem; line-height: 1.6; margin-bottom: 15px; }
+
+        .founder-panel {
+            background-color: var(--surface);
+            border: 1px solid var(--border-light);
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 41, 17, 0.02);
+            box-sizing: border-box;
+        }
+
+        .founder-tag {
+            color: var(--primary-glow);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 800;
+            margin-bottom: 4px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        .founder-panel h3 { margin: 0 0 5px 0; font-size: 1.6rem; font-weight: 800; color: var(--text-main); }
+        .founder-panel p { margin: 0 0 20px 0; color: var(--text-muted); line-height: 1.5; font-size: 0.95rem; }
+
+        .hq-badge-box {
+            border-top: 1px solid var(--border-light);
+            padding-top: 15px;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .hq-badge-box strong { color: var(--text-main); display: block; margin-bottom: 4px; }
+
+        /* Trust Credentials Framework */
+        .credentials-section { 
+            background-color: var(--surface-bright); 
+            padding: 70px 20px; 
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .credentials-inner { max-width: 1100px; margin: 0 auto; }
+        .credentials-inner h2 { font-size: 2.2rem; text-align: center; margin-bottom: 40px; color: var(--text-main); letter-spacing: -0.5px; }
+        .credentials-inner h2 span { color: var(--primary-glow); }
+
+        .cred-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+        .cred-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 14px;
+            padding: 22px;
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+            box-shadow: 0 4px 15px rgba(0, 41, 17, 0.01);
+            box-sizing: border-box;
+        }
+
+        .cred-icon {
+            font-size: 1.1rem;
+            background: rgba(0, 150, 64, 0.08);
+            padding: 4px 10px;
+            border-radius: 6px;
+            color: var(--primary-glow);
+            font-weight: bold;
+        }
+
+        .cred-info h4 { margin: 0 0 4px 0; font-size: 1.05rem; font-weight: 700; color: var(--text-main); }
+        .cred-info p { margin: 0; font-size: 0.85rem; color: var(--text-muted); line-height: 1.4; }
+
+        footer {
+            background-color: var(--surface);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Full Responsive Alignment Fixes */
+        @media (max-width: 950px) {
+            .dna-section { grid-template-columns: 1fr; gap: 30px; margin: 20px auto 40px auto; }
+            .cred-grid { grid-template-columns: repeat(2, 1fr); }
+            .about-banner h1 { font-size: 2.4rem; }
+        }
+
+        @media (max-width: 600px) {
+            .cred-grid { grid-template-columns: 1fr; }
+            .about-banner { padding: 50px 20px 30px 20px; }
+            .about-banner h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-link">
+                <img src="C:\Users\Akshayadevi\Downloads\logo.jpeg" alt="InAmigos Foundation Official Logo" class="logo-img">
+                <div class="logo-text">InAmigos <span>Foundation</span></div>
+            </a>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About Us</a>
+                <a href="projects.html">Our Initiatives</a>
+                <a href="join.html">Join Us</a>
+                <a href="contacts.html">Contact Us</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="about-banner">
+            <h1>About <span>InAmigos Foundation</span></h1>
+            <p>Formally established on September 23, 2020. We connect dedicated local volunteers with resources to assist children, women, and animals in daily need.</p>
+        </section>
+
+        <section class="dna-section">
+            <div class="dna-text">
+                <h2>Our Vision & Work</h2>
+                <p>We are a Section 8 licensed non-profit foundation with operations running transparently throughout India. We believe that true, measurable progress takes place when ordinary citizens step forward together.</p>
+                <p>Over the past four years, our foundation has also provided vocational and community internship tracks to more than 30,000+ young students across marketing, content operations, data research, and social work modules, building a pipeline of socially responsible young leaders.</p>
+            </div>
+            
+            <div class="founder-panel">
+                <span class="founder-tag">Founder & CEO</span>
+                <h3>Mr. Govind Shukla</h3>
+                <p>Leading nationwide community welfare campaigns and transparent donor accountability operations directly from our central headquarters.</p>
+                
+                <div class="hq-badge-box">
+                    <strong>Registered Headquarters Address:</strong>
+                    Ward No. 5, Gram Post,<br>
+                    Sipat Ujwal Nagar, Bilaspur,<br>
+                    Chhattisgarh — Pin Code: 495555
+                </div>
+            </div>
+        </section>
+
+        <section class="credentials-section">
+            <div class="credentials-inner">
+                <h2>Our Legal <span>Certifications & Registrations</span></h2>
+                <div class="cred-grid">
+                    
+                    <div class="cred-card">
+                        <div class="cred-icon">✓</div>
+                        <div class="cred-info">
+                            <h4>Section 8 Approved</h4>
+                            <p>Licensed formally under the Central Government of India as an official charity body.</p>
+                        </div>
+                    </div>
+
+                    <div class="cred-card">
+                        <div class="cred-icon">✓</div>
+                        <div class="cred-info">
+                            <h4>80G & 12A Certified</h4>
+                            <p>Ensuring transparent workflows and tax exemptions on all incoming public donations.</p>
+                        </div>
+                    </div>
+
+                    <div class="cred-card">
+                        <div class="cred-icon">✓</div>
+                        <div class="cred-info">
+                            <h4>CSR-1 Certified</h4>
+                            <p>Fully authorized to partner for official Corporate Social Responsibility funds.</p>
+                        </div>
+                    </div>
+
+                    <div class="cred-card">
+                        <div class="cred-icon">✓</div>
+                        <div class="cred-info">
+                            <h4>NITI Aayog Listed</h4>
+                            <p>Directly aligned with nationwide sustainable socio-economic growth benchmarks.</p>
+                        </div>
+                    </div>
+
+                    <div class="cred-card">
+                        <div class="cred-icon">✓</div>
+                        <div class="cred-info">
+                            <h4>ISO 9001:2015 Quality</h4>
+                            <p>Committed to maintaining top administrative standards and social fund checks.</p>
+                        </div>
+                    </div>
+
+                    <div class="cred-card">
+                        <div class="cred-icon">✓</div>
+                        <div class="cred-info">
+                            <h4>30,000+ Citizens Engaged</h4>
+                            <p>Building local change-maker paths for college youths across the country.</p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 InAmigos Foundation. Section 8 Corporate Registered Charity. Bilaspur, Chhattisgarh.</p>
+    </footer>
+
+</body>
+</html>

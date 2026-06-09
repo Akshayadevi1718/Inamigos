@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InAmigos | Campaign Matrix</title>
+    <style>
+        :root {
+            /* Fresh Light Green Theme Palette */
+            --bg-deep: #f4f9f5;         /* Ultra soft mint-tinted background */
+            --surface: #ffffff;         /* Pure white for crisp contrast */
+            --surface-bright: #ebf4ed;  /* Soft sage green for section blocks */
+            --primary-glow: #009640;    /* InAmigos Official Green */
+            --accent-blue: #3b82f6;     /* Kept for metric/status variety if needed */
+            --text-main: #0f291b;       /* Deep forest green-slate for high readability */
+            --text-muted: #52665a;      /* Balanced muted sage for subtext */
+            --border-light: #e1ede5;    /* Clean light green-gray borders */
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            margin: 0;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
+            overflow-x: hidden;
+        }
+
+        /* Top Blurred Navbar Navigation */
+        header {
+            background-color: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 10px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid var(--border-light);
+            box-shadow: 0 4px 20px rgba(0, 150, 64, 0.03);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-link {
+            text-decoration: none; 
+            display: flex; 
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo-title {
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .logo-title span {
+            color: var(--primary-glow);
+        }
+
+        .logo-img {
+            height: 50px; 
+            width: auto; 
+            object-fit: contain; 
+            display: block;
+        }
+
+        nav {
+            display: flex; 
+            gap: 25px;
+        }
+
+        nav a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover, nav a.active {
+            color: var(--primary-glow);
+        }
+        
+        nav a.highlighted {
+            font-weight: 700;
+        }
+
+        /* Banner Segment Styling */
+        .projects-banner {
+            padding: 100px 20px 40px 20px;
+            text-align: center;
+            background: radial-gradient(circle at top, rgba(0, 150, 64, 0.06), transparent 60%);
+        }
+
+        .projects-banner h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            letter-spacing: -1px;
+            margin: 0 0 15px 0;
+        }
+
+        .projects-banner h1 span {
+            color: var(--primary-glow);
+        }
+
+        .projects-banner p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* Main Multi-Grid Deployment Area */
+        .matrix-grid-section {
+            max-width: 1200px;
+            margin: 50px auto 100px auto;
+            padding: 0 20px;
+        }
+
+        .category-divider {
+            font-size: 1.4rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            margin: 50px 0 25px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            color: var(--text-main);
+        }
+
+        .category-divider::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(to right, var(--border-light), transparent);
+        }
+
+        .campaign-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .campaign-card {
+            background-color: var(--surface);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campaign-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--primary-glow);
+            box-shadow: 0 15px 35px rgba(0, 150, 64, 0.1);
+        }
+
+        .img-viewport {
+            height: 200px;
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .img-viewport img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .campaign-card:hover .img-viewport img {
+            transform: scale(1.06);
+        }
+
+        .status-pill {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 5px 12px;
+            border-radius: 30px;
+            font-size: 0.75rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            z-index: 10;
+        }
+
+        .status-pill.active { 
+            background: rgba(0, 150, 64, 0.15); 
+            color: var(--primary-glow); 
+            border: 1px solid rgba(0, 150, 64, 0.25); 
+        }
+        
+        .status-pill.rolling { 
+            background: rgba(59, 130, 246, 0.15); 
+            color: var(--accent-blue); 
+            border: 1px solid rgba(59, 130, 246, 0.25); 
+        }
+
+        .campaign-meta {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .campaign-meta h3 {
+            margin: 0 0 10px 0;
+            font-size: 1.35rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .campaign-meta p {
+            margin: 0 0 25px 0;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            flex-grow: 1;
+        }
+
+        /* Structured Framework Trackers */
+        .tracker-tray {
+            background-color: var(--surface-bright);
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid var(--border-light);
+        }
+
+        .tracker-label-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .tracker-bar-bg {
+            background-color: rgba(0, 150, 64, 0.1);
+            height: 6px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tracker-fill {
+            height: 100%;
+            background: linear-gradient(to right, var(--primary-glow), #4ade80);
+            border-radius: 10px;
+        }
+
+        footer {
+            background-color: var(--surface);
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 1px solid var(--border-light);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 950px) {
+            .campaign-grid { grid-template-columns: repeat(2, 1fr); }
+            .projects-banner h1 { font-size: 2.8rem; }
+        }
+
+        @media (max-width: 650px) {
+            .campaign-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="nav-container">
+        <a href="index.html" class="logo-link">
+            <img src="C:\Users\Akshayadevi\Downloads\logo.jpeg" alt="InAmigos Foundation Official Logo" class="logo-img">
+            <div class="logo-title">
+                InAmigos <span>Foundation</span>
+            </div>
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="projects.html" class="active">Our Initiatives</a>
+            <a href="join.html" class="highlighted">Join Us</a>
+            <a href="contacts.html">Contact Us</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <section class="projects-banner">
+        <h1>Active <span>Campaign Matrix</span></h1>
+        <p>Transparent architectural frameworks driving verifiable performance metrics across our operational clusters.</p>
+    </section>
+
+    <section class="matrix-grid-section">
+        
+        <div class="category-divider">Socio-Educational Equity</div>
+        <div class="campaign-grid">
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill active">Live Deployment</span>
+                    <img src="https://images.unsplash.com/photo-1497633762265-9d179a990aa6?q=80&w=500" alt="Bachpanshala Setup">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Bachpanshala</h3>
+                    <p>Setting up localized, alternative community coaching centers for children in vulnerable rural outposts lacking consistent institutional access.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Deployment Target</span><span>82%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 82%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill rolling">Rolling Program</span>
+                    <img src="https://images.unsplash.com/photo-1593113598332-cd288d649433?q=80&w=500" alt="Project Udaan Setup">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Udaan</h3>
+                    <p>Vocational empowerment systems mapping sustainable handicraft, digital micro-work, and localized sales expertise to underprivileged women groups.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Allocation Target</span><span>65%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 65%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill active">Live Deployment</span>
+                    <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=500" alt="Project Vikas Grid">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Vikas</h3>
+                    <p>Bridging corporate entry gaps by conducting rigorous technical workshops, soft skill evaluations, and interview simulation loops for Tier-3 college batches.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Batches Guided</span><span>90%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 90%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-divider">Eco-Restoration Systems</div>
+        <div class="campaign-grid">
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill active">Live Deployment</span>
+                    <img src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?q=80&w=500" alt="Prakriti Reforestation">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Prakriti</h3>
+                    <p>Constructing urban miniature forests and bio-fences by deploying systematic native-sapling plantation drives across suburban industrial zones.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Saplings Afforested</span><span>74%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 74%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill rolling">Rolling Program</span>
+                    <img src="https://images.unsplash.com/photo-1618477388954-7852f32655ec?q=80&w=500" alt="Sanitation mapping">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Shuddhi</h3>
+                    <p>Targeted plastic debris extraction and micro-waste isolation tracking setups around choked public water bodies and wetlands.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Zones Cleaned</span><span>58%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 58%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill active">Live Deployment</span>
+                    <img src="https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?q=80&w=500" alt="Urja Solar setups">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Urja</h3>
+                    <p>Introducing fundamental solar lantern frameworks and eco-friendly clean cooking configurations to low-tier households facing off-grid constraints.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Grid Installations</span><span>44%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 44%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="category-divider">Critical Relief Networks</div>
+        <div class="campaign-grid">
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill rolling">Rolling Program</span>
+                    <img src="https://images.unsplash.com/photo-1548767797-d8c844163c4c?q=80&w=500" alt="Project Jeev Drives">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Jeev</h3>
+                    <p>Providing structural nourishment drops, stray community health checkups, and responsive medical interventions for street animals.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Feeding Capacity</span><span>88%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 88%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill active">Live Deployment</span>
+                    <img src="https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?q=80&w=500" alt="Project Seva Supplies">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Seva</h3>
+                    <p>Assembling balanced carbohydrate and micronutrient grain supply buckets to help stabilize low-income settlement structures.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Packages Dispatched</span><span>95%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 95%;"></div></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="campaign-card">
+                <div class="img-viewport">
+                    <span class="status-pill active">Live Deployment</span>
+                    <img src="https://images.unsplash.com/photo-1532938911079-1b06ac7ceec7?q=80&w=500" alt="Arogya camps">
+                </div>
+                <div class="campaign-meta">
+                    <h3>Project Arogya</h3>
+                    <p>Deploying mobile testing vans and clinical consultants into rural zones to perform essential diagnostics and diagnostic reviews.</p>
+                    <div class="tracker-tray">
+                        <div class="tracker-label-row"><span>Medical Outreach</span><span>71%</span></div>
+                        <div class="tracker-bar-bg"><div class="tracker-fill" style="width: 71%;"></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2026 InAmigos Foundation Dashboard. Optimized Internship Submission Environment.</p>
+</footer>
+
+</body>
+</html>
