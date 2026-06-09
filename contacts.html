@@ -213,7 +213,6 @@
             font-size: 1.3rem;
         }
 
-        /* Brand Colors Matching Official Guidelines */
         .social-capsule.linkedin i { color: #0077b5; }
         .social-capsule.instagram i { color: #e1306c; }
         .social-capsule.facebook i { color: #1877f2; }
@@ -247,69 +246,68 @@
             font-size: 0.95rem;
         }
 
-        .form-group {
-            margin-bottom: 20px;
-        }
+        .form-group { margin-bottom: 20px; }
+        .form-group label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 0.9rem; color: var(--text-main); }
+        .form-group input, .form-group textarea { width: 100%; box-sizing: border-box; padding: 12px 16px; border: 1px solid var(--border-light); background-color: var(--bg-deep); border-radius: 10px; font-family: inherit; font-size: 0.95rem; color: var(--text-main); transition: all 0.3s ease; }
+        .form-group input:focus, .form-group textarea:focus { outline: none; border-color: var(--primary-glow); background-color: var(--surface); box-shadow: 0 0 0 3px rgba(0, 150, 64, 0.1); }
 
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: var(--text-main);
-        }
+        .submit-btn { width: 100%; background: linear-gradient(135deg, var(--primary-glow), #10b981); color: #ffffff; border: none; padding: 14px; border-radius: 10px; font-weight: 700; font-size: 1rem; cursor: pointer; box-shadow: 0 4px 15px rgba(0, 150, 64, 0.15); transition: all 0.3s ease; }
+        .submit-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 150, 64, 0.3); }
 
-        .form-group input, .form-group textarea {
-            width: 100%;
-            box-sizing: border-box;
-            padding: 12px 16px;
-            border: 1px solid var(--border-light);
-            background-color: var(--bg-deep);
-            border-radius: 10px;
-            font-family: inherit;
-            font-size: 0.95rem;
-            color: var(--text-main);
-            transition: all 0.3s ease;
-        }
+        footer { background-color: var(--surface); text-align: center; padding: 40px 20px; border-top: 1px solid var(--border-light); color: var(--text-muted); font-size: 0.9rem; }
 
-        .form-group input:focus, .form-group textarea:focus {
-            outline: none;
-            border-color: var(--primary-glow);
-            background-color: var(--surface);
-            box-shadow: 0 0 0 3px rgba(0, 150, 64, 0.1);
-        }
-
-        .submit-btn {
-            width: 100%;
-            background: linear-gradient(135deg, var(--primary-glow), #10b981);
-            color: #ffffff;
-            border: none;
-            padding: 14px;
-            border-radius: 10px;
-            font-weight: 700;
-            font-size: 1rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0, 150, 64, 0.15);
-            transition: all 0.3s ease;
-        }
-
-        .submit-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 150, 64, 0.3);
-        }
-
-        footer {
-            background-color: var(--surface);
-            text-align: center;
-            padding: 40px 20px;
-            border-top: 1px solid var(--border-light);
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
+        /* ==========================================================================
+           UPDATED MOBILE RESPONSIVE MEDIA QUERIES
+           ========================================================================== */
         @media (max-width: 850px) {
-            .contact-grid { grid-template-columns: 1fr; }
-            .social-matrix { grid-template-columns: 1fr; }
+            header {
+                padding: 10px 15px;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            nav {
+                gap: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .contact-hero {
+                padding: 40px 15px 20px 15px;
+            }
+
+            .contact-hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .contact-hero p {
+                font-size: 1rem;
+            }
+
+            .contact-grid { 
+                grid-template-columns: 1fr; 
+                margin: 20px auto 60px auto;
+                gap: 25px;
+                padding: 0 15px;
+            }
+
+            .info-panel {
+                padding: 20px;
+            }
+
+            .form-panel {
+                padding: 30px 20px;
+                border-radius: 20px;
+            }
+
+            .social-matrix { 
+                grid-template-columns: 1fr; 
+                gap: 10px;
+            }
         }
     </style>
 </head>
